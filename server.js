@@ -24,6 +24,15 @@ app.get("*", function (req, res) {
 
 // Display notes
 app.get("/api/notes", function (req, res) {
+  fs.readFile("db/db.json", "utf8", function (err, data) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+
+    // check out what the data looks like
+    console.log(data);
+  });
   return res.json(notes);
 });
 
