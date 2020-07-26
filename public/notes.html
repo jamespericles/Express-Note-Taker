@@ -46,35 +46,5 @@
     </div>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/assets/js/index.js"></script>
-    <!-- <script>
-      function saveNote() {
-        // const data = {
-        //   noteTitle: document.getElementsByClassName("note-title")[0].value,
-        //   noteText: document.getElementsByClassName("note-textarea")[0].value,
-        // };
-        const formData = new FormData();
-
-        formData.append(
-          "noteTitle",
-          document.getElementsByClassName("note-title")[0].value
-        );
-        formData.append(
-          "noteText",
-          document.getElementsByClassName("note-textarea")[0].value
-        );
-        fetch("http://localhost:3000/api/notes", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: formData,
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Success:", data);
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-      }
-    </script> -->
   </body>
 </html>
