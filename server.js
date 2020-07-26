@@ -17,13 +17,17 @@ app.get("/notes", function (req, res) {
   res.sendFile(path.join(__dirname, "public/notes.html"));
 });
 
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "public/index.html"));
+});
+
 // Display notes
 app.get("/api/notes", function (req, res) {
   return res.json(notes);
 });
 
 // Create new note
-app.post("api/notes", function (req, res) {
+app.post("/api/notes", function (req, res) {
   let newNote = req.body;
 
   notes.push(newNote);
@@ -34,8 +38,4 @@ app.post("api/notes", function (req, res) {
 // Starts server to begin listening
 app.listen(PORT, function () {
   console.log("App listening on PORT " + PORT);
-});
-
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "public/index.html"));
 });
