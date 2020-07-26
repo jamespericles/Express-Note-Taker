@@ -8,6 +8,7 @@ let PORT = 3000;
 // Set up Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("public"));
 
 // Empty Array for notes
 let notes = [];
