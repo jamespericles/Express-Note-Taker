@@ -28,6 +28,7 @@ app.get("/api/notes", function (req, res) {
 
 // Create new note
 app.post("/api/notes", function (req, res) {
+  console.log(req.body);
   let newNote = req.body;
 
   notes.push(newNote);
