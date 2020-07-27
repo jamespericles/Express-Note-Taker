@@ -13,9 +13,6 @@ app.use(express.static("public"));
 let notes = require("./db/db.json");
 console.log("Notes: ", notes);
 
-// Empty Array for notes
-// let notes = [];
-
 // Routes
 app.get("/notes", function (req, res) {
   res.sendFile(path.join(__dirname, "public/notes.html"));
