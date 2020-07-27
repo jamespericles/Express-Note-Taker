@@ -47,3 +47,19 @@ app.post("/api/notes", function (req, res) {
 app.listen(PORT, function () {
   console.log("App listening on PORT " + PORT);
 });
+
+// // Create new note
+// app.post("/api/notes", function(req, res) {
+//     console.log(req.body);
+//     let newNote = {
+//       id: //generate some id somehow
+//       title: req.body.title,
+//       text: req.body.text
+
+// }
+// // fs.readFile and set a variable for all of your notes with the data returned like  `var something = JSON.parse(data)`
+// // push your newly created notes to the array you just created
+//     notes.push(newNote);
+// //then fs.writeFile and res.send(notes)
+//     res.json(newNote);
+// });
