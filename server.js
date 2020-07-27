@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
 
 // Set up Express app to listen on port 3000
 let app = express();
@@ -9,18 +10,20 @@ let PORT = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
+let notes = require("./db/db.json");
+console.log("Notes: ", notes);
 
 // Empty Array for notes
-let notes = [];
+// let notes = [];
 
 // Routes
 app.get("/notes", function (req, res) {
   res.sendFile(path.join(__dirname, "public/notes.html"));
 });
 
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "public/index.html"));
-});
+// app.get("*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "public/index.html"));
+// });
 
 // Display notes
 app.get("/api/notes", function (req, res) {
@@ -29,11 +32,8 @@ app.get("/api/notes", function (req, res) {
       console.log(err);
       return;
     }
-
-    // check out what the data looks like
-    console.log(data);
+    res.send(notes);
   });
-  return res.json(notes);
 });
 
 // Create new note
