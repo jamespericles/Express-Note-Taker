@@ -18,10 +18,6 @@ app.get("/notes", function (req, res) {
   res.sendFile(path.join(__dirname, "public/notes.html"));
 });
 
-// app.get("*", function (req, res) {
-//   res.sendFile(path.join(__dirname, "public/index.html"));
-// });
-
 // Display notes
 app.get("/api/notes", function (req, res) {
   fs.readFile("db/db.json", "utf8", function (err, data) {
@@ -47,16 +43,22 @@ app.post("/api/notes", function (req, res) {
     title: req.body.title,
     text: req.body.text,
   };
+  console.log(typeof notes);
   notes.push(newNote);
-  res.json(newNote);
-  JSON.stringify(newNote);
-  fs.writeFile("db/db.json", newNote, (err) => {
+  const stringifyNote = JSON.stringify(newNote);
+  res.json(stringifyNote);
+  fs.writeFile("db/db.json", stringifyNote, (err) => {
     if (err) console.log(err);
     else {
       console.log("Note successfully saved to db.json");
     }
   });
 });
+
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "public/index.html"));
+});
+
 // }
 // // fs.readFile and set a variable for all of your notes with the data returned like  `var something = JSON.parse(data)`
 // // push your newly created notes to the array you just created
