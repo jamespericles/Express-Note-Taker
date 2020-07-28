@@ -45,14 +45,31 @@ app.post("/api/notes", function (req, res) {
   };
   console.log(typeof notes);
   notes.push(newNote);
-  // const newNoteArray = []
   const stringifyNote = JSON.stringify(notes);
-
   res.json(notes);
   fs.writeFile("db/db.json", stringifyNote, (err) => {
     if (err) console.log(err);
     else {
       console.log("Note successfully saved to db.json");
+    }
+  });
+});
+
+// Delete note
+app.delete("/api/notes/:id", function (req, res) {
+  let noteID = req.params.id;
+  let updatedNotes = notes.filter((note) => {
+    console.log("note.id", note.id);
+    console.log("noteID", noteID);
+    return note.id !== noteID;
+  });
+  res.json(updatedNotes);
+  const stringifyNote = JSON.stringify(updatedNotes);
+
+  fs.writeFile("db/db.json", stringifyNote, (err) => {
+    if (err) console.log(err);
+    else {
+      console.log("Note successfully deleted from db.json");
     }
   });
 });
