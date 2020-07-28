@@ -11,7 +11,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 let notes = require("./db/db.json");
-// console.log("Notes: ", notes);
 
 // Routes
 app.get("/notes", function (req, res) {
@@ -74,14 +73,7 @@ app.delete("/api/notes/:id", function (req, res) {
   });
 });
 
+// Catch all error route
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
-
-// }
-// // fs.readFile and set a variable for all of your notes with the data returned like  `var something = JSON.parse(data)`
-// // push your newly created notes to the array you just created
-//     notes.push(newNote);
-// //then fs.writeFile and res.send(notes)
-//     res.json(newNote);
-// });
