@@ -4,7 +4,7 @@ const fs = require("fs");
 
 // Set up Express app to listen on port 3000
 let app = express();
-// let PORT = 3000;
+let PORT = 3000;
 
 // Set up Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
