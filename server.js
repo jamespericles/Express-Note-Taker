@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 let notes = require("./db/db.json");
-console.log("Notes: ", notes);
+// console.log("Notes: ", notes);
 
 // Routes
 app.get("/notes", function (req, res) {
@@ -33,29 +33,30 @@ app.get("/api/notes", function (req, res) {
   });
 });
 
-// Create new note
-app.post("/api/notes", function (req, res) {
-  console.log(req.body);
-  let newNote = req.body;
-
-  notes.push(newNote);
-
-  res.json(newNote);
-});
-
 // Starts server to begin listening
 app.listen(PORT, function () {
   console.log("App listening on PORT " + PORT);
 });
 
-// // Create new note
-// app.post("/api/notes", function(req, res) {
-//     console.log(req.body);
-//     let newNote = {
-//       id: //generate some id somehow
-//       title: req.body.title,
-//       text: req.body.text
-
+// Create new note
+app.post("/api/notes", function (req, res) {
+  let randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+  let id = randLetter + Date.now();
+  let newNote = {
+    id: id,
+    title: req.body.title,
+    text: req.body.text,
+  };
+  notes.push(newNote);
+  res.json(newNote);
+  JSON.stringify(newNote);
+  fs.writeFile("db/db.json", newNote, (err) => {
+    if (err) console.log(err);
+    else {
+      console.log("Note successfully saved to db.json");
+    }
+  });
+});
 // }
 // // fs.readFile and set a variable for all of your notes with the data returned like  `var something = JSON.parse(data)`
 // // push your newly created notes to the array you just created
