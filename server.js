@@ -56,21 +56,20 @@ app.post("/api/notes", function (req, res) {
 
 // Delete note
 app.delete("/api/notes/:id", function (req, res) {
-  const stringifyNote = JSON.stringify(updatedNotes);
   let noteID = req.params.id;
   let updatedNotes = notes.filter((note) => {
     console.log("note.id", note.id);
     console.log("noteID", noteID);
     return note.id !== noteID;
   });
-
+  const stringifyNote = JSON.stringify(updatedNotes);
   fs.writeFile("db/db.json", stringifyNote, (err) => {
     if (err) console.log(err);
     else {
       console.log("Note successfully deleted from db.json");
     }
   });
-  res.json(updatedNotes);
+  res.json(stringifyNote);
 });
 
 // Catch all error route
