@@ -24,7 +24,7 @@ app.get("/api/notes", function (req, res) {
       console.log(err);
       return;
     }
-    res.send(notes);
+    res.json(notes);
   });
 });
 
@@ -57,19 +57,22 @@ app.post("/api/notes", function (req, res) {
 // Delete note
 app.delete("/api/notes/:id", function (req, res) {
   let noteID = req.params.id;
-  let updatedNotes = notes.filter((note) => {
-    console.log("note.id", note.id);
-    console.log("noteID", noteID);
-    return note.id !== noteID;
+  fs.readFile("db/db.json", "utf8", function (err, data) {
+    let updatedNotes = JSON.parse(data).filter((note) => {
+      console.log("note.id", note.id);
+      console.log("noteID", noteID);
+      return note.id !== noteID;
+    });
+    notes = updatedNotes;
+    const stringifyNote = JSON.stringify(updatedNotes);
+    fs.writeFile("db/db.json", stringifyNote, (err) => {
+      if (err) console.log(err);
+      else {
+        console.log("Note successfully deleted from db.json");
+      }
+    });
+    res.json(stringifyNote);
   });
-  const stringifyNote = JSON.stringify(updatedNotes);
-  fs.writeFile("db/db.json", stringifyNote, (err) => {
-    if (err) console.log(err);
-    else {
-      console.log("Note successfully deleted from db.json");
-    }
-  });
-  res.json(stringifyNote);
 });
 
 // Catch all error route
