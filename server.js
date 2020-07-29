@@ -64,7 +64,7 @@ app.delete("/api/notes/:id", function (req, res) {
     return note.id !== noteID;
   });
 
-  fs.writeFile("db/db.json", updatedNotes, (err) => {
+  fs.writeFile("db/db.json", stringifyNote, (err) => {
     if (err) console.log(err);
     else {
       console.log("Note successfully deleted from db.json");
