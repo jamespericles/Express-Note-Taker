@@ -32,7 +32,7 @@ This lightweight application allows for users to write and store notes to a serv
 
 ### <a name="Screenshots"></a>Screenshots
 
-https://github.com/jamespericles/Express-Note-Taker/blob/master/Screenshots/Lets_Create_Some_Notes.png
+![Lets_Create_Some_Notes](https://github.com/jamespericles/Express-Note-Taker/blob/master/Screenshots/Lets_Create_Some_Notes.png)
 
 ### <a name="Installation"></a>Installation
 
