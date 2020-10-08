@@ -18,8 +18,6 @@
 
 ### [Contributing](#Contributing)
 
-### [Tests](#Tests)
-
 ### [Questions](#Questions)
 
 ### [Github](#Github)
@@ -71,10 +69,6 @@ SOFTWARE.
 ### <a name="Contributing"></a>Contributing
 
 Anyone is welcome to iterate on my work and may contact me at my email below with any questions relating to the project or the license.
-
-### <a name="Tests"></a>Tests
-
-All tests were conducted using Postman besides running a local server on my machine to ensure all pathways worked.
 
 ### <a name="Questions"></a>Questions
 
